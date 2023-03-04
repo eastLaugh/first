@@ -1,0 +1,1 @@
+<view class="content"><button type="default" bindtap="{{a}}">留言</button><view wx:for="{{b}}" wx:for-item="item" class="post-wrapper" bindtap="{{item.c}}"><view class="name-wrapper">{{item.a}} : </view><view class="content-wrapper">{{item.b}}</view></view></view>

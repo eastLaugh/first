@@ -1,0 +1,1 @@
+<view class="content"><button type="default" bindtap="{{a}}">返回</button><button type="default" bindtap="{{b}}">发送</button><input type="text" value="{{c}}" bindinput="{{d}}"/><block wx:if="{{r0}}"><textarea placeholder="请输入内容..." value="{{e}}" bindinput="{{f}}"/></block></view>
