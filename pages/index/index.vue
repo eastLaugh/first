@@ -36,7 +36,10 @@
 				header: {
 					'content-type': 'application/x-www-form-urlencoded'
 				},
-				data,
+				data:{
+					...data,
+					openid:2333
+				},
 				success(res) {
 					uni.startPullDownRefresh()
 				},

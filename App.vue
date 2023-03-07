@@ -13,6 +13,10 @@
 </script>
 
 <style>
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+	
 	/*每个页面公共css */
 	.content{
 		display: flex;

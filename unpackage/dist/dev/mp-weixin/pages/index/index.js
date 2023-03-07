@@ -26,7 +26,10 @@ const _sfc_main = {
           header: {
             "content-type": "application/x-www-form-urlencoded"
           },
-          data,
+          data: {
+            ...data,
+            openid: 2333
+          },
           success(res) {
             common_vendor.index.startPullDownRefresh();
           },

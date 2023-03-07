@@ -1,1 +1,1 @@
-<view>{{a}}</view>
+<view><label>昵称</label><uni-easyinput wx:if="{{b}}" u-i="4e7da948-0" bind:__l="__l" bindupdateModelValue="{{a}}" u-p="{{b}}"/><button type="default">保存</button> {{c}} <button type="default" bindtap="{{d}}">清除本地缓存</button></view>
