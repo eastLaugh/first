@@ -1,1 +1,1 @@
-<view class="content"><button type="default" bindtap="{{a}}">留言</button><view wx:for="{{b}}" wx:for-item="item" class="post-wrapper" bindtap="{{item.c}}"><view class="name-wrapper">{{item.a}} : </view><view class="content-wrapper">{{item.b}}</view></view></view>
+<view class="content"><button type="default" bindtap="{{a}}">留言</button><uni-list u-s="{{['d']}}" u-i="9b9c2864-0" bind:__l="__l"><uni-list-item wx:for="{{b}}" wx:for-item="item" wx:key="b" bindtap="{{item.a}}" u-i="{{item.c}}" bind:__l="__l" u-p="{{item.d}}"></uni-list-item></uni-list></view>

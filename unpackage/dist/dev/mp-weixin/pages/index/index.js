@@ -1,14 +1,19 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const src_send = require("../../src/send.js");
+if (!Array) {
+  const _easycom_uni_list_item2 = common_vendor.resolveComponent("uni-list-item");
+  const _easycom_uni_list2 = common_vendor.resolveComponent("uni-list");
+  (_easycom_uni_list_item2 + _easycom_uni_list2)();
+}
+const _easycom_uni_list_item = () => "../../uni_modules/uni-list/components/uni-list-item/uni-list-item.js";
+const _easycom_uni_list = () => "../../uni_modules/uni-list/components/uni-list/uni-list.js";
+if (!Math) {
+  (_easycom_uni_list_item + _easycom_uni_list)();
+}
 const _sfc_main = {
   __name: "index",
   setup(__props) {
-    function SwicthToPostPage(post_id) {
-      common_vendor.index.navigateTo({
-        url: "/pages/post/post?post_id=" + post_id
-      });
-    }
     function SwicthToSendPage() {
       src_send.bringUp((data) => {
         common_vendor.index.showToast({
@@ -55,9 +60,14 @@ const _sfc_main = {
         a: common_vendor.o(SwicthToSendPage),
         b: common_vendor.f(newsInfo.value, (item, k0, i0) => {
           return {
-            a: common_vendor.t(item.name ? item.name : "[未留名]"),
-            b: common_vendor.t(item.message),
-            c: common_vendor.o(($event) => SwicthToPostPage(item.id))
+            a: common_vendor.o(($event) => common_vendor.unref(src_send.SwicthToPostPage)(item.id), item.id),
+            b: item.id,
+            c: "9b9c2864-1-" + i0 + ",9b9c2864-0",
+            d: common_vendor.p({
+              title: item.message,
+              note: item.name ? item.name : "未留名",
+              link: true
+            })
           };
         })
       };

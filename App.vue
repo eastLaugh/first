@@ -14,4 +14,11 @@
 
 <style>
 	/*每个页面公共css */
+	.content{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		align-items:stretch;
+	}
 </style>

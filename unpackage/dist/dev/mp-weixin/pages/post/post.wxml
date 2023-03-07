@@ -1,1 +1,1 @@
-<view></view>
+<view class="content"><uni-list u-s="{{['d']}}" u-i="5d845330-0" bind:__l="__l"><uni-list-item wx:for="{{a}}" wx:for-item="item" wx:key="c" u-s="{{['footer','d']}}" bindtap="{{item.b}}" u-i="{{item.d}}" bind:__l="__l" u-p="{{item.e}}"> 233 <view slot="footer" style="font-size:small">{{item.a}}</view></uni-list-item></uni-list></view><uni-fab wx:if="{{c}}" bindfabClick="{{b}}" u-i="5d845330-2" bind:__l="__l" u-p="{{c}}"></uni-fab>
