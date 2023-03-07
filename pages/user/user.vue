@@ -3,9 +3,12 @@
 <!-- 		<button type="default" open-type="chooseAvatar">
 			<image class="avatar" src="{{avatarUrl}}"></image>
 		</button> -->
+		登录状态：{{isLogin}}
+		<button type="default" @tap="login">使用微信账号登录</button>
+		{{userInfo}}
 		<label>昵称</label>
 		<uni-easyinput v-model="nickname" type="nickname" placeholder="" />
-		<button type="default">保存</button>
+		<button type="default" @tap="saveNickName">保存</button>
 		
 		{{session_key}}
 		<button type="default" @tap="()=>{
@@ -15,30 +18,50 @@
 </template>
 
 <script>
-	import{login,session_key} from '../../src/send.js'
+	import{login,session_key, verify,userInfo,isLogin} from '../../src/send.js'
 	export default {
 		data() {
 			return {
 				session_key,
-				nickname:''
+				nickname:'',
+				userInfo,
+				isLogin
 			}
 		},
 		methods: {
-			
-		},
-		mounted() {
-			console.log('mounted不被调用')
+			login,
+			saveNickName(){
+				console.log(this)
+				uni.request({
+					url:import.meta.env.VITE_SERVER+'/api/update',
+					method:'POST',
+					header:{
+						'content-type': 'application/x-www-form-urlencoded'
+					},
+					data:{
+						session_key:session_key.value,
+						nickname:this.nickname
+					},
+					success() {
+						verify()
+					}
+				})
+			}
 		},
 		onLoad() {
-			login()
+
 		},
 		onPullDownRefresh() {
-			login()
+			verify()
 			uni.stopPullDownRefresh()
 		},
 		watch:{
-			session_key(value,oldValue){
-				console.log(value)
+			userInfo:{
+				handler(value,oldValue){
+					this.nickname=value.nickname
+					console.log(this)
+				},
+				immediate:true
 			}
 		}
 	}

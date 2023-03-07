@@ -1,3 +1,4 @@
+import './src/index.css'
 import App from './App'
 
 // #ifndef VUE3

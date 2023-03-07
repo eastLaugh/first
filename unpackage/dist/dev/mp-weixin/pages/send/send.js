@@ -1,8 +1,14 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const src_send = require("../../src/send.js");
 const __default__ = {
   onUnload() {
     common_vendor.index.$off("send");
+  },
+  onLoad() {
+    console.log(userInfo.value);
+    if (userInfo.value)
+      ;
   }
 };
 const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
@@ -20,7 +26,8 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
     function send() {
       common_vendor.index.$emit("send", {
         name: name.value,
-        content: content.value
+        content: content.value,
+        session_key: src_send.session_key.value
       });
       common_vendor.index.navigateBack();
     }

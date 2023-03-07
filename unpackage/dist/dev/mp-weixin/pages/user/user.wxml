@@ -1,1 +1,1 @@
-<view><label>昵称</label><uni-easyinput wx:if="{{b}}" u-i="4e7da948-0" bind:__l="__l" bindupdateModelValue="{{a}}" u-p="{{b}}"/><button type="default">保存</button> {{c}} <button type="default" bindtap="{{d}}">清除本地缓存</button></view>
+<view> 登录状态：{{a}} <button type="default" bindtap="{{b}}">使用微信账号登录</button> {{c}} <label>昵称</label><uni-easyinput wx:if="{{e}}" u-i="4e7da948-0" bind:__l="__l" bindupdateModelValue="{{d}}" u-p="{{e}}"/><button type="default" bindtap="{{f}}">保存</button> {{g}} <button type="default" bindtap="{{h}}">清除本地缓存</button></view>

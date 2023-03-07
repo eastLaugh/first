@@ -13,7 +13,7 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+	/* 每个页面公共css */
 	.content{
 		display: flex;
 		justify-content: center;

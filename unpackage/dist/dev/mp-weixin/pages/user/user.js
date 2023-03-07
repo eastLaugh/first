@@ -5,23 +5,44 @@ const _sfc_main = {
   data() {
     return {
       session_key: src_send.session_key,
-      nickname: ""
+      nickname: "",
+      userInfo: src_send.userInfo,
+      isLogin: src_send.isLogin
     };
   },
-  methods: {},
-  mounted() {
-    console.log("mounted不被调用");
+  methods: {
+    login: src_send.login,
+    saveNickName() {
+      console.log(this);
+      common_vendor.index.request({
+        url: "http://localhost:8080/api/update",
+        method: "POST",
+        header: {
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        data: {
+          session_key: src_send.session_key.value,
+          nickname: this.nickname
+        },
+        success() {
+          src_send.verify();
+        }
+      });
+    }
   },
   onLoad() {
-    src_send.login();
   },
   onPullDownRefresh() {
-    src_send.login();
+    src_send.verify();
     common_vendor.index.stopPullDownRefresh();
   },
   watch: {
-    session_key(value, oldValue) {
-      console.log(value);
+    userInfo: {
+      handler(value, oldValue) {
+        this.nickname = value.nickname;
+        console.log(this);
+      },
+      immediate: true
     }
   }
 };
@@ -35,14 +56,18 @@ if (!Math) {
 }
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
-    a: common_vendor.o(($event) => $data.nickname = $event),
-    b: common_vendor.p({
+    a: common_vendor.t($data.isLogin),
+    b: common_vendor.o((...args) => $options.login && $options.login(...args)),
+    c: common_vendor.t($data.userInfo),
+    d: common_vendor.o(($event) => $data.nickname = $event),
+    e: common_vendor.p({
       type: "nickname",
       placeholder: "",
       modelValue: $data.nickname
     }),
-    c: common_vendor.t($data.session_key),
-    d: common_vendor.o(() => {
+    f: common_vendor.o((...args) => $options.saveNickName && $options.saveNickName(...args)),
+    g: common_vendor.t($data.session_key),
+    h: common_vendor.o(() => {
       $data.session_key = "";
     })
   };

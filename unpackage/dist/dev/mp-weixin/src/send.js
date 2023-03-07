@@ -17,60 +17,69 @@ function SwicthToPostPage(post_id) {
 console.log(
   "http://localhost:8080/api/verify"
 );
-const session_key = common_vendor.ref(common_vendor.index.getStorageSync("session_key"));
+const session_key = common_vendor.ref();
 common_vendor.watch(session_key, (value, oldValue) => {
+  console.log(value);
   common_vendor.index.setStorageSync("session_key", value);
+  if (value) {
+    verify();
+  }
+});
+session_key.value = common_vendor.index.getStorageSync("session_key");
+const isLogin = common_vendor.computed(() => {
+  return Boolean(userInfo.value);
 });
 function login() {
-  if (session_key.value) {
-    console.log("#1");
-    common_vendor.index.request({
-      url: "http://localhost:8080/api/verify",
-      method: "POST",
-      header: {
-        "content-type": "application/x-www-form-urlencoded"
-      },
-      data: {
-        session_key: session_key.value
-      },
-      success: (res) => {
-        console.log(res);
-        if (res.success)
-          ;
-        else {
-          session_key.value = "";
-          login();
+  console.log("#login");
+  common_vendor.wx$1.login({
+    success(res) {
+      common_vendor.wx$1.request({
+        url: "http://localhost:8080/api/login",
+        header: {
+          code: res.code
+        },
+        success(res2) {
+          session_key.value = res2.data.session_key;
+        },
+        fail() {
+          common_vendor.index.showToast({
+            title: "出错了"
+          });
         }
-      },
-      fail() {
-        common_vendor.index.showToast({
-          title: "出错了"
-        });
+      });
+    }
+  });
+}
+const userInfo = common_vendor.ref();
+function verify() {
+  console.log("#verify");
+  common_vendor.index.request({
+    url: "http://localhost:8080/api/verify",
+    method: "POST",
+    header: {
+      "content-type": "application/x-www-form-urlencoded"
+    },
+    data: {
+      session_key: session_key.value
+    },
+    success: (res) => {
+      if (res.data.success) {
+        userInfo.value = res.data.data;
+      } else {
+        userInfo.value = "";
       }
-    });
-  } else {
-    console.log("#2");
-    common_vendor.wx$1.login({
-      success(res) {
-        common_vendor.wx$1.request({
-          url: "http://localhost:8080/api/login",
-          header: {
-            code: res.code
-          },
-          success(res2) {
-            session_key.value = res2.data.session_key;
-          },
-          fail() {
-            common_vendor.index.showToast({
-              title: "出错了"
-            });
-          }
-        });
-      }
-    });
-  }
+    },
+    fail() {
+      common_vendor.index.showToast({
+        title: "出错了"
+      });
+    }
+  });
 }
 exports.SwicthToPostPage = SwicthToPostPage;
 exports.bringUp = bringUp;
+exports.isLogin = isLogin;
 exports.login = login;
 exports.session_key = session_key;
+exports.userInfo = userInfo;
+exports.verify = verify;

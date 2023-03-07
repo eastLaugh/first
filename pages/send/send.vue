@@ -9,6 +9,7 @@
 
 <script setup>
 	import{ref } from 'vue'
+	import {session_key} from '../../src/send.js'
 	const name = ref('')
 	const content = ref('')
 	function navigate(url) {
@@ -21,7 +22,8 @@
 	function send(){
 		uni.$emit('send',{
 			name:name.value,
-			content:content.value
+			content:content.value,
+			session_key:session_key.value
 		})
 		uni.navigateBack()
 	}
@@ -32,6 +34,12 @@
 	export default{
 		onUnload(){
 			uni.$off('send')
+		},
+		onLoad() {
+			console.log(userInfo.value)
+			if(userInfo.value){
+				
+			}
 		}
 	}
 	
