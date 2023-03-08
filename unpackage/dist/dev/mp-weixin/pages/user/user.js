@@ -39,7 +39,7 @@ const _sfc_main = {
   watch: {
     userInfo: {
       handler(value, oldValue) {
-        this.nickname = value.nickname;
+        this.nickname = value == null ? void 0 : value.nickname;
         console.log(this);
       },
       immediate: true
