@@ -48,11 +48,15 @@
 		"list": [
 			{
 				"text": "首页",
-				"pagePath": "pages/index/index"
+				"pagePath": "pages/index/index",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home.png"
 			},
 			{
 				"text":"个人",
-				"pagePath": "pages/user/user"
+				"pagePath": "pages/user/user",
+				"iconPath": "static/logo.png",
+				"selectedIconPath": "static/logo.png"
 			}
 		]
 	}
