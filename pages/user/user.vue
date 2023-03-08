@@ -58,7 +58,7 @@
 		watch:{
 			userInfo:{
 				handler(value,oldValue){
-					this.nickname=value.nickname
+					this.nickname=value?.nickname
 					console.log(this)
 				},
 				immediate:true
