@@ -1,3 +1,4 @@
+
 <script>
 	export default {
 		onLaunch: function() {
@@ -13,6 +14,7 @@
 </script>
 
 <style>
+	@import 'dist/output.css';
 	/* 每个页面公共css */
 	.content{
 		display: flex;
@@ -20,5 +22,8 @@
 		align-items: center;
 		flex-direction: column;
 		align-items:stretch;
+	}
+	button{
+		width: 75%;
 	}
 </style>

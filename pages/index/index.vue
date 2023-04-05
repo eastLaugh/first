@@ -74,8 +74,8 @@
 </script>
 <style>
 		
-	button{
+/* 	button{
 		width: 100%;
 	}
-
+ */
 </style>

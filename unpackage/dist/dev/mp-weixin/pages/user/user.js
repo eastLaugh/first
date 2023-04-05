@@ -28,6 +28,10 @@ const _sfc_main = {
           src_send.verify();
         }
       });
+    },
+    logoff() {
+      this.session_key = "";
+      common_vendor.index.startPullDownRefresh();
     }
   },
   onLoad() {
@@ -40,7 +44,6 @@ const _sfc_main = {
     userInfo: {
       handler(value, oldValue) {
         this.nickname = value == null ? void 0 : value.nickname;
-        console.log(this);
       },
       immediate: true
     }
@@ -67,9 +70,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     f: common_vendor.o((...args) => $options.saveNickName && $options.saveNickName(...args)),
     g: common_vendor.t($data.session_key),
-    h: common_vendor.o(() => {
-      $data.session_key = "";
-    })
+    h: common_vendor.o((...args) => $options.logoff && $options.logoff(...args))
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__file", "C:/Users/east_/Documents/HBuilderProjects/first/pages/user/user.vue"]]);

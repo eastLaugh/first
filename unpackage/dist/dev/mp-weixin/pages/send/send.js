@@ -1,14 +1,17 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const src_send = require("../../src/send.js");
+if (!Array) {
+  const _easycom_uni_easyinput2 = common_vendor.resolveComponent("uni-easyinput");
+  _easycom_uni_easyinput2();
+}
+const _easycom_uni_easyinput = () => "../../uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.js";
+if (!Math) {
+  _easycom_uni_easyinput();
+}
 const __default__ = {
   onUnload() {
     common_vendor.index.$off("send");
-  },
-  onLoad() {
-    console.log(userInfo.value);
-    if (userInfo.value)
-      ;
   }
 };
 const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
@@ -35,10 +38,12 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
       return {
         a: common_vendor.o(($event) => navigate()),
         b: common_vendor.o(send),
-        c: name.value,
-        d: common_vendor.o(($event) => name.value = $event.detail.value),
-        e: content.value,
-        f: common_vendor.o(($event) => content.value = $event.detail.value)
+        c: common_vendor.o(($event) => content.value = $event),
+        d: common_vendor.p({
+          placeholder: "",
+          type: "textarea",
+          modelValue: content.value
+        })
       };
     };
   }

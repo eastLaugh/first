@@ -1,8 +1,5 @@
 <template>
-	<view>
-<!-- 		<button type="default" open-type="chooseAvatar">
-			<image class="avatar" src="{{avatarUrl}}"></image>
-		</button> -->
+	<view class="content">
 		登录状态：{{isLogin}}
 		<button type="default" @tap="login">使用微信账号登录</button>
 		{{userInfo}}
@@ -11,9 +8,7 @@
 		<button type="default" @tap="saveNickName">保存</button>
 		
 		{{session_key}}
-		<button type="default" @tap="()=>{
-			session_key=''
-		}">清除本地缓存</button>
+		<button type="default" @tap="logoff">注销</button>
 	</view>
 </template>
 
@@ -46,6 +41,10 @@
 						verify()
 					}
 				})
+			},
+			logoff(){
+				this.session_key=''
+				uni.startPullDownRefresh()
 			}
 		},
 		onLoad() {
@@ -59,7 +58,6 @@
 			userInfo:{
 				handler(value,oldValue){
 					this.nickname=value?.nickname
-					console.log(this)
 				},
 				immediate:true
 			}

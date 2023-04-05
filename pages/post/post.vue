@@ -5,7 +5,6 @@
 				if(index!=0)
 					SwicthToPostPage(item.id)
 			}" :key="item.id"  :note="item.name ? item.name : '[未留名]' " :title="item.message" link>
-			233
 				<template v-slot:footer style="font-size: small;">
 					{{item.created_at}}
 				</template>
